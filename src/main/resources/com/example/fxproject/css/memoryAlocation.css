@@ -1,0 +1,148 @@
+#background{
+    -fx-background-color: #101010;
+}
+#leftPane{
+    -fx-background-color: #101010;
+}
+#centerPane{
+    -fx-background-color: #fdfdfd;
+    -fx-background-radius: 20 0 0 20;
+}
+#rightPane{
+    -fx-background-color: #f9fafc;
+    -fx-background-radius: 0 20 20 0;
+}
+.unselectedMenuButton{
+    -fx-text-fill: #909090;
+    -fx-font-family: "Montserrat Bold";
+    -fx-font-weight: bold;
+    -fx-font-size: 14px;
+    -fx-background-color: transparent;
+}
+.unselectedMenuButton:hover{
+    -fx-text-fill: #ffffff;
+}
+.startButton{
+    -fx-background-color: #101010;
+    -fx-background-radius: 10;
+    -fx-text-fill: #F4F7FA;
+    -fx-font-family: "Montserrat Bold";
+    -fx-font-weight: bold;
+    -fx-font-size: 12px;
+}
+.startButton:hover{
+    -fx-background-color: #272727;
+}
+.startButton:focused{
+    -fx-text-fill: #ffffff;
+}
+.panelTestStatus{
+    -fx-background-color: #eceff5;
+    -fx-background-radius: 8px;
+}
+.titleText{
+    -fx-text-fill: #262a41;
+    -fx-font-size: 18;
+    -fx-font-family: "Montserrat Bold";
+    -fx-font-weight: bold;
+}
+.primaryText{
+    -fx-text-fill: #232f3d;
+    -fx-font-size: 12;
+    -fx-font-family: "Montserrat";
+}
+.secondaryText{
+    -fx-text-fill: #808080;
+    -fx-font-size: 12;
+    -fx-font-family: "Montserrat";
+}
+/* Customize the Bar Fill */
+.progress-bar .bar {
+    -fx-background-color: linear-gradient(to right, #4CAF50, #8BC34A); /* Green gradient */
+    -fx-background-insets: 0;
+    -fx-background-radius: 5px;
+}
+
+/* Customize the Track (Empty Area) */
+.progress-bar .track {
+    -fx-background-color: #D3E1FF; /* Light blue for track background */
+    -fx-background-insets: 0;
+    -fx-background-radius: 5px;
+}
+
+/* Adding Text on ProgressBar (Optional) */
+.progress-bar .text {
+    -fx-fill: #333333; /* Text color */
+    -fx-font-size: 12px;
+    -fx-font-weight: bold;
+}
+/* LineChart container styling */
+.chart {
+    -fx-background-color: transparent;
+    -fx-border-color: transparent;
+}
+
+/* Chart Title */
+.chart-title {
+    -fx-text-fill: #262a41; /* Customize chart title color */
+    -fx-font-size: 12px;
+    -fx-font-family: Montserrat;
+    -fx-font-weight: Bold;
+}
+
+/* Chart Plot Background */
+.chart-plot-background {
+    -fx-background-color: #F8F8F8; /* Background of the chart area */
+    -fx-border-color: #D3D3D3; /* Border around the plot area */
+    -fx-border-width: 10;
+}
+
+/* Customizing X and Y Axes */
+.axis {
+    -fx-tick-label-fill: #808080; /* Tick label color */
+    -fx-tick-label-font-size: 12px;
+    -fx-tick-mark-length: 8px;
+    -fx-font-family: "Montserrat";
+}
+
+.axis-label {
+    -fx-text-fill: #333333; /* Axis label color */
+    -fx-font-size: 14px;
+}
+
+/* Customizing Axis Lines */
+.chart-vertical-grid-lines, .chart-horizontal-grid-lines {
+    -fx-stroke: #D0D0D0; /* Grid lines color */
+    -fx-stroke-dash-array: 5 5; /* Dashed grid lines */
+}
+
+/* Customizing Series Lines and Symbols */
+.default-color0.chart-series-line { /* First series line (e.g., C++) */
+    -fx-stroke: #3b5998; /* Dark blue color */
+    -fx-stroke-width: 2px;
+}
+.default-color0.chart-line-symbol {
+    -fx-background-color: #3b5998, white;
+    -fx-background-insets: 0, 2;
+    -fx-background-radius: 5px;
+}
+
+.default-color1.chart-series-line { /* Second series line (e.g., Java) */
+    -fx-stroke: #8b9dc3; /* Light blue color */
+    -fx-stroke-width: 2px;
+}
+.default-color1.chart-line-symbol {
+    -fx-background-color: #8b9dc3, white;
+    -fx-background-insets: 0, 2;
+    -fx-background-radius: 5px;
+}
+
+.default-color2.chart-series-line { /* Third series line (e.g., Python) */
+    -fx-stroke: #ff4500; /* Orange color */
+    -fx-stroke-width: 2px;
+}
+.default-color2.chart-line-symbol {
+    -fx-background-color: #ff4500, white;
+    -fx-background-insets: 0, 2;
+    -fx-background-radius: 5px;
+}

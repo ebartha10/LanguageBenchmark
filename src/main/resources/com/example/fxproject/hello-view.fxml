@@ -1,0 +1,189 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.chart.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<HBox id="background" alignment="BOTTOM_LEFT" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" stylesheets="@css/memoryAlocation.css" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.fxproject.MainController">
+   <children>
+      <VBox prefHeight="200.0" prefWidth="120.0" HBox.hgrow="NEVER">
+         <children>
+            <Pane id="leftPane" prefHeight="200.0" prefWidth="120.0" VBox.vgrow="ALWAYS">
+               <children>
+                  <VBox alignment="CENTER" prefHeight="400.0" prefWidth="120.0" spacing="5.0">
+                     <children>
+                        <Button fx:id="buttonMemoryAlloc" alignment="TOP_LEFT" mnemonicParsing="false" onAction="#onButtonMemoryAllocClick" prefWidth="120.0" styleClass="unselectedMenuButton" text="Alocare Memorie" wrapText="true" VBox.vgrow="NEVER" />
+                        <Button fx:id="buttonStaticMemory" alignment="TOP_LEFT" mnemonicParsing="false" onAction="#onbuttonStaticMemoryClick" prefWidth="120.0" styleClass="unselectedMenuButton" text="Memorie Statica" textOverrun="CLIP" wrapText="true" />
+                        <Button fx:id="buttonDynamicMemory" mnemonicParsing="false" onAction="#onbuttonDynamicMemoryClick" styleClass="unselectedMenuButton" text="Memorie Dinamica" textOverrun="CLIP" wrapText="true" />
+                        <Button fx:id="buttonCreateThread" alignment="TOP_LEFT" mnemonicParsing="false" onAction="#onbuttonCreateThreadClick" prefWidth="120.0" styleClass="unselectedMenuButton" text="Creare Thread" textOverrun="CLIP" wrapText="true" />
+                        <Button fx:id="buttonContextSwitch" alignment="TOP_LEFT" mnemonicParsing="false" onAction="#onbuttonContextSwitchClick" prefWidth="120.0" styleClass="unselectedMenuButton" text="Context Switch" wrapText="true" />
+                        <Button fx:id="buttonThreadMigration" alignment="TOP_LEFT" mnemonicParsing="false" onAction="#onbuttonThreadMigrationClick" prefWidth="120.0" styleClass="unselectedMenuButton" text="Thread Migration" wrapText="true" />
+                     </children>
+                     <padding>
+                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                     </padding>
+                  </VBox>
+               </children></Pane>
+         </children>
+      </VBox>
+      <HBox id="leftHBox" alignment="CENTER_LEFT" HBox.hgrow="ALWAYS">
+         <children>
+            <Pane id="centerPane" prefHeight="200.0" prefWidth="200.0" HBox.hgrow="ALWAYS">
+               <children>
+                  <VBox alignment="TOP_CENTER" maxWidth="600.0" spacing="10.0">
+                     <children>
+                        <Label fx:id="labelTestTitle" styleClass="titleText" text="Alocare Memorie" />
+                        <Label fx:id="labelTestDesc" styleClass="secondaryText" text="Se va testa alocare memoriei dinamice." />
+                        <Button fx:id="buttonStartTest" alignment="CENTER" mnemonicParsing="false" onAction="#onStartButtonClicked" prefHeight="40.0" prefWidth="140.0" styleClass="startButton" text="Incepe Test" />
+                        <LineChart fx:id="graph" prefWidth="400.0" title="Rezultate" VBox.vgrow="ALWAYS">
+                           <xAxis>
+                              <NumberAxis label="Iteratii" />
+                           </xAxis>
+                          <yAxis>
+                            <NumberAxis label="Timp (s)" side="LEFT">
+                                 <tickLabelFont>
+                                    <Font size="10.0" />
+                                 </tickLabelFont></NumberAxis>
+                          </yAxis>
+                        </LineChart>
+                     </children>
+                     <padding>
+                        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+                     </padding>
+                  </VBox>
+               </children></Pane>
+            <VBox prefHeight="200.0" prefWidth="240.0">
+               <children>
+                  <Pane id="rightPane" prefHeight="200.0" prefWidth="220.0" VBox.vgrow="ALWAYS">
+                     <children>
+                        <VBox prefWidth="240.0" spacing="10.0">
+                           <children>
+                              <Label style="-fx-text-fill: #101010;" styleClass="secondaryText" text="Progres Test" wrapText="true">
+                                 <font>
+                                    <Font size="8.0" />
+                                 </font>
+                              </Label>
+                              <HBox alignment="CENTER_LEFT" spacing="4.0" styleClass="panelTestStatus">
+                                 <children>
+                                    <Label styleClass="primaryText" text="C++" />
+                                    <ProgressBar fx:id="progressBarCpp">
+                                       <HBox.margin>
+                                          <Insets left="15.0" />
+                                       </HBox.margin></ProgressBar>
+                                    <Label fx:id="statusCpp" styleClass="primaryText" text="ASTEAPTA" />
+                                 </children>
+                                 <padding>
+                                    <Insets bottom="5.0" left="5.0" right="2.0" top="5.0" />
+                                 </padding>
+                                 <opaqueInsets>
+                                    <Insets />
+                                 </opaqueInsets>
+                                 <VBox.margin>
+                                    <Insets />
+                                 </VBox.margin>
+                              </HBox>
+                              <HBox alignment="CENTER_LEFT" spacing="4.0" styleClass="panelTestStatus">
+                                 <children>
+                                    <Label styleClass="primaryText" text="Java" />
+                                    <ProgressBar fx:id="progressBarJava">
+                                       <HBox.margin>
+                                          <Insets left="15.0" />
+                                       </HBox.margin></ProgressBar>
+                                    <Label fx:id="statusJava" styleClass="primaryText" text="ASTEAPTA" />
+                                 </children>
+                                 <padding>
+                                    <Insets bottom="5.0" left="5.0" right="2.0" top="5.0" />
+                                 </padding>
+                                 <opaqueInsets>
+                                    <Insets />
+                                 </opaqueInsets>
+                                 <VBox.margin>
+                                    <Insets />
+                                 </VBox.margin>
+                              </HBox>
+                              <HBox alignment="CENTER_LEFT" spacing="4.0" styleClass="panelTestStatus">
+                                 <children>
+                                    <Label styleClass="primaryText" text="Python" />
+                                    <ProgressBar fx:id="progressBarPython" />
+                                    <Label fx:id="statusPython" styleClass="primaryText" text="ASTEAPTA" />
+                                 </children>
+                                 <padding>
+                                    <Insets bottom="5.0" left="5.0" right="2.0" top="5.0" />
+                                 </padding>
+                                 <opaqueInsets>
+                                    <Insets />
+                                 </opaqueInsets>
+                                 <VBox.margin>
+                                    <Insets />
+                                 </VBox.margin>
+                              </HBox>
+                              <VBox prefHeight="200.0" prefWidth="100.0" spacing="10.0" styleClass="panelTestStatus">
+                                 <children>
+                                    <Label styleClass="titleText" text="Progres Test" />
+                                    <VBox>
+                                       <children>
+                                          <Label style="-fx-font-weight: bold;" styleClass="primaryText" text="Start C++" />
+                                          <Label fx:id="labelStartCpp" styleClass="secondaryText" text="14:20:30.1234" />
+                                       </children>
+                                    </VBox>
+                                    <VBox>
+                                       <children>
+                                          <Label style="-fx-font-weight: bold;" styleClass="primaryText" text="Stop C++" />
+                                          <Label fx:id="labelStopCpp" styleClass="secondaryText" text="14:20:30.1234" />
+                                       </children>
+                                    </VBox>
+                                    <VBox>
+                                       <children>
+                                          <Label style="-fx-font-weight: bold;" styleClass="primaryText" text="Start Java" />
+                                          <Label fx:id="labelStartJava" styleClass="secondaryText" text="14:20:30.1234" />
+                                       </children>
+                                    </VBox>
+                                    <VBox>
+                                       <children>
+                                          <Label style="-fx-font-weight: bold;" styleClass="primaryText" text="Stop Java" />
+                                          <Label fx:id="labelStopJava" styleClass="secondaryText" text="14:20:30.1234" />
+                                       </children>
+                                    </VBox>
+                                    <VBox>
+                                       <children>
+                                          <Label style="-fx-font-weight: bold;" styleClass="primaryText" text="Start Python" />
+                                          <Label fx:id="labelStartPython" styleClass="secondaryText" text="14:20:30.1234" />
+                                       </children>
+                                    </VBox>
+                                    <VBox>
+                                       <children>
+                                          <Label style="-fx-font-weight: bold;" styleClass="primaryText" text="Stop Python" />
+                                          <Label fx:id="labelStopPython" styleClass="secondaryText" text="14:20:30.1234" />
+                                       </children>
+                                    </VBox>
+                                 </children>
+                                 <padding>
+                                    <Insets bottom="5.0" left="20.0" right="5.0" top="20.0" />
+                                 </padding>
+                              </VBox>
+                           </children>
+                           <padding>
+                              <Insets bottom="10.0" left="5.0" right="5.0" top="10.0" />
+                           </padding>
+                        </VBox>
+                     </children>
+                     <VBox.margin>
+                        <Insets />
+                     </VBox.margin>
+                     <padding>
+                        <Insets right="20.0" />
+                     </padding></Pane>
+               </children>
+            </VBox>
+         </children>
+         <opaqueInsets>
+            <Insets />
+         </opaqueInsets>
+         <HBox.margin>
+            <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+         </HBox.margin>
+      </HBox>
+   </children>
+</HBox>
