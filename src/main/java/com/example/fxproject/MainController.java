@@ -11,6 +11,8 @@ import javafx.scene.control.Label;
 import javafx.scene.control.ProgressBar;
 import javafx.scene.control.ProgressIndicator;
 
+import java.io.FileWriter;
+import java.io.IOException;
 import java.time.LocalTime;
 
 public class MainController {
@@ -42,7 +44,8 @@ public class MainController {
     @FXML private Label labelStopPython;
     @FXML private LineChart graph;
     private int testType = 0;
-
+    private FileWriter writer;
+    private int id = 0;
 
     private void resetProgressBar(){
         progressBarCpp.setProgress(0.0);
@@ -113,6 +116,7 @@ public class MainController {
         // Handle the result when the task completes successfully
         testTask.setOnSucceeded(event -> {
             TestResult testResult = testTask.getValue();
+            printData(testResult,"cpp");
 
             XYChart.Series<Number, Number> series = new XYChart.Series<>();
             series.setName("C++");
@@ -135,6 +139,7 @@ public class MainController {
         statusPython.setText("RULEAZA");
         testTaskPython.setOnSucceeded(event -> {
             TestResult testResult = testTaskPython.getValue();
+            printData(testResult,"python");
 
             XYChart.Series<Number, Number> series = new XYChart.Series<>();
             series.setName("Python");
@@ -161,6 +166,8 @@ public class MainController {
         testTask.setOnSucceeded(event -> {
             TestResult testResult = testTask.getValue();
 
+            printData(testResult,"java");
+
             XYChart.Series<Number, Number> series = new XYChart.Series<>();
             series.setName("Java");
 
@@ -186,7 +193,30 @@ public class MainController {
 
     @FXML protected void onStartButtonClicked() {
         graph.getData().clear();
+        try {
+            writer = new FileWriter("output.csv");
+            writer.append("id,language,result\n");
+            id = 0;
+        }
+        catch (IOException e) {
+            System.out.println(e.getMessage());
+        }
         runCppTest();
     }
-
+    private void printData(TestResult testResult, String language){
+        for(double result : testResult.getTestResults()){
+            try {
+                writer.append(String.valueOf(id++)).append(",").append(language).append(",").append(String.valueOf(result)).append('\n');
+            }
+            catch (IOException e) {
+                System.out.println(e.getMessage());
+            }
+        }
+        try {
+            writer.flush();
+        }
+        catch (IOException e) {
+            System.out.println(e.getMessage());
+        }
+    }
 }
