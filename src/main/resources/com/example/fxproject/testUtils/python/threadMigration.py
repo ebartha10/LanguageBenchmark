@@ -2,10 +2,12 @@ import threading
 import psutil
 import os
 import timeit
-num_iterations = int(1e6)
+
+num_iterations = int(1e4)
 def thread_task(proc):
     for i in range(num_iterations):
         proc.cpu_affinity([i%2])
+
 
 if __name__ == '__main__':
     # Set CPU affinity to specific cores (e.g., cores 0 and 1)
@@ -16,4 +18,4 @@ if __name__ == '__main__':
 thread = threading.Thread(target=thread_task(p))
 thread.start()
 thread.join()""", globals=globals(), number=1)
-    print(creation_time)
+    print(int(creation_time * 1000000000 / num_iterations))

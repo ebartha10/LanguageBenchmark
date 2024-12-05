@@ -32,7 +32,7 @@
          <children>
             <Pane id="centerPane" prefHeight="200.0" prefWidth="200.0" HBox.hgrow="ALWAYS">
                <children>
-                  <VBox alignment="TOP_CENTER" maxWidth="600.0" spacing="10.0">
+                  <VBox alignment="TOP_CENTER" maxWidth="1.7976931348623157E308" spacing="10.0">
                      <children>
                         <Label fx:id="labelTestTitle" styleClass="titleText" text="Alocare Memorie" />
                         <Label fx:id="labelTestDesc" styleClass="secondaryText" text="Se va testa alocare memoriei dinamice." />

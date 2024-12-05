@@ -4,6 +4,7 @@ module com.example.fxproject {
 
     requires org.controlsfx.controls;
     requires jmh.core;
+    requires com.sun.jna;
 
     opens com.example.fxproject to javafx.fxml;
     exports com.example.fxproject;

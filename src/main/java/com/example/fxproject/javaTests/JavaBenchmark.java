@@ -17,7 +17,7 @@ public class JavaBenchmark {
     @Measurement(iterations = 20)
     @BenchmarkMode(Mode.AverageTime)
     public void testMemoryAllocation() {
-        int[] var = new int[(int) 1e8];
+        int[] var = new int[(int) 1e4];
     }
 
     @Benchmark
@@ -26,7 +26,7 @@ public class JavaBenchmark {
     @Measurement(iterations = 20)
     @BenchmarkMode(Mode.AverageTime)
     public void testStaticMemory() {
-        for (int i = 0; i < (int) 1e8; i++) {
+        for (int i = 0; i < (int) 1e4; i++) {
             foo = i;
         }
     }
@@ -58,9 +58,9 @@ public class JavaBenchmark {
     @BenchmarkMode(Mode.AverageTime)
 
     public void testThreadCreation() {
-        List<Thread> threads = new ArrayList<>((int)1e4);
+        List<Thread> threads = new ArrayList<>((int)1e2);
 
-        for (int i = 0; i < (int)1e4; i++) {
+        for (int i = 0; i < (int)1e2; i++) {
             Thread thread = new DummyThread();
             threads.add(thread);
             thread.start();

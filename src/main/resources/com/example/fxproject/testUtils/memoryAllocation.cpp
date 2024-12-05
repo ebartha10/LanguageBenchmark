@@ -1,7 +1,7 @@
 #include <iostream>
 #include <chrono>
 using namespace std;
-const int SIZE = 1e8; // Size of the static array
+const int SIZE = 1e4; // Size of the static array
 int *mem;
 int main() {
     // Measure the time taken to access the static memory
@@ -11,5 +11,5 @@ int main() {
     // Calculate the duration
     std::chrono::duration<double> duration = end - start;
 
-    return duration.count() * 100000;
+    return duration.count() * 1000000000 / SIZE;
 }

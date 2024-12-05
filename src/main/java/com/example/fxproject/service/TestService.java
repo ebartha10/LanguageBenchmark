@@ -3,12 +3,15 @@ package com.example.fxproject.service;
 import com.example.fxproject.backend.Test;
 import com.example.fxproject.backend.impl.*;
 
+import java.util.Arrays;
+
 public class TestService {
     MemoryAllocationTest memoryAllocationTest = new MemoryAllocationTest();
     StaticMemoryTest staticMemoryTest = new StaticMemoryTest();
     DynamicMemoryTest dynamicMemoryTest = new DynamicMemoryTest();
     ThreadCreationTest threadCreationTest = new ThreadCreationTest();
     ThreadContextSwitch threadContextSwitch = new ThreadContextSwitch();
+    ThreadMigrationTest threadMigrationTest  = new ThreadMigrationTest();
 
     public double runCppTest(int testType){
         switch (testType) {
@@ -28,6 +31,9 @@ public class TestService {
             case Test.TEST_THREAD_CONTEST_SWITCH -> {
                 return threadContextSwitch.runCpp();
             }
+            case Test.TEST_THREAD_MIGRATION -> {
+                return threadMigrationTest.runCpp();
+            }
             default -> {
                 return -1;
             }
@@ -37,19 +43,22 @@ public class TestService {
         switch (testType) {
             case Test
                     .TEST_MEMORY_ALLOC -> {
-                return memoryAllocationTest.runJava(givenIterations);
+                return Arrays.stream(memoryAllocationTest.runJava(givenIterations)).map(e -> e/(int)1e4).toArray();
             }
             case Test.TEST_STATIC_MEMORY -> {
-                return staticMemoryTest.runJava(givenIterations);
+                return Arrays.stream(staticMemoryTest.runJava(givenIterations)).map(e -> e/ (int)1e4).toArray();
             }
             case Test.TEST_DYNAMIC_MEMORY -> {
-                return dynamicMemoryTest.runJava(givenIterations);
+                return Arrays.stream(dynamicMemoryTest.runJava(givenIterations)).map(e -> e / (int) 1e6).toArray();
             }
             case Test.TEST_THREAD_CREATION -> {
-                return threadCreationTest.runJava(givenIterations);
+                return Arrays.stream(threadCreationTest.runJava(givenIterations)).map(e -> e / (int) 1e2).toArray();
             }
             case Test.TEST_THREAD_CONTEST_SWITCH -> {
-                return threadContextSwitch.runJava(givenIterations);
+                return Arrays.stream(threadContextSwitch.runJava(givenIterations)).map(e -> e / (int) 1e5).toArray();
+            }
+            case Test.TEST_THREAD_MIGRATION -> {
+                return Arrays.stream(threadMigrationTest.runJava(givenIterations)).map(e -> e / (int)1e9).toArray();
             }
             default -> {
                 return null;
@@ -73,6 +82,9 @@ public class TestService {
             }
             case Test.TEST_THREAD_CONTEST_SWITCH -> {
                 return threadContextSwitch.runPython();
+            }
+            case Test.TEST_THREAD_MIGRATION -> {
+                return threadMigrationTest.runPython();
             }
             default -> {
                 return -1;

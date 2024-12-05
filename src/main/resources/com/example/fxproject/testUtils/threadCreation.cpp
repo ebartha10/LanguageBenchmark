@@ -7,7 +7,7 @@ DWORD WINAPI threadFunction(LPVOID arg) {
     return 0;
 }
 
-const int NUM_THREADS = 1e4; // Number of threads to create
+const int NUM_THREADS = 1e2; // Number of threads to create
 int main() {
     HANDLE threads[NUM_THREADS];
 
@@ -29,5 +29,5 @@ int main() {
     // Calculate the duration
     std::chrono::duration<double> duration = end - start;
     std::cout << duration.count() * 100000 << '\n';
-    return duration.count() * 100000;
+    return duration.count() * 1000000000 / NUM_THREADS;
 }

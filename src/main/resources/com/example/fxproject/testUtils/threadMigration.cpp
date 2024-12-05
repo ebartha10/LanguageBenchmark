@@ -5,12 +5,14 @@
 using namespace std;
 volatile int sharedInt = 0;
 const int NUM_THREADS = 1; // Number of threads to create
-const int SWITCH_AMMOUNT = 1e7;
+const int SWITCH_AMMOUNT = 1e4;
 HANDLE mtx;
 DWORD WINAPI threadFunction(LPVOID arg) {
-    HANDLE threadHandle = (HANDLE) arg;
+    HANDLE threadHandle = GetCurrentThread();
     for (int i = 0; i < SWITCH_AMMOUNT; i++) {
         SetThreadAffinityMask(threadHandle, 1 << i % 2);
+        SwitchToThread();
+        Sleep(0);
     }
     return 0;
 }
@@ -33,15 +35,12 @@ int main() {
 
     auto end = std::chrono::high_resolution_clock::now();
 
-    // Close thread handles 
+    // Close thread handles
     for (int i = 0; i < NUM_THREADS; ++i) {
         CloseHandle(threads[i]);
     }
     // Calculate the duration
     std::chrono::duration<double> duration = end - start;
 
-    std::cout << "Time taken to switch " << NUM_THREADS << " threads: "
-              << duration.count() << " seconds" << std::endl;
-
-    return 0;
+    return duration.count() * 1000000000 / SWITCH_AMMOUNT;
 }

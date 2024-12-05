@@ -104,12 +104,13 @@ public class MainController {
     @FXML protected void onbuttonThreadMigrationClick(){
         labelTestTitle.setText("Thread Migration");
         labelTestDesc.setText("Testele vor verifica timpul unui thread migration.");
+        testType = Test.TEST_THREAD_MIGRATION;
         resetProgressBar();
         graph.getData().clear();
 
     }
     private void runCppTest(){
-        TestTask testTask = new TestTask( 10, testType, 0);
+        TestTask testTask = new TestTask( 50, testType, 0);
         statusCpp.setText("RULEAZA");
         testTask.messageProperty().addListener((observableValue, s, t1) -> labelStartCpp.setText(t1));
         testTask.progressProperty().addListener(((observableValue, number, t1) -> progressBarCpp.setProgress((double)t1)));
@@ -132,7 +133,7 @@ public class MainController {
         th.start();
     }
     private void runPythonTest(){
-        TestTask testTaskPython = new TestTask( 10, testType, 1);
+        TestTask testTaskPython = new TestTask( 50, testType, 1);
 
         testTaskPython.messageProperty().addListener((observableValue, s, t1) -> labelStartPython.setText(t1));
         testTaskPython.progressProperty().addListener(((observableValue, number, t1) -> progressBarPython.setProgress((double)t1)));
@@ -157,7 +158,7 @@ public class MainController {
         th.start();
     }
     private void runJavaTest(){
-        TestTask testTask = new TestTask( 10, testType, 2);
+        TestTask testTask = new TestTask( 50, testType, 2);
 
         testTask.messageProperty().addListener((observableValue, s, t1) -> labelStartJava.setText(t1));
         progressBarJava.setProgress(ProgressIndicator.INDETERMINATE_PROGRESS);

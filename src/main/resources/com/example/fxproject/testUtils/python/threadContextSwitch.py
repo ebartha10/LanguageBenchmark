@@ -40,7 +40,7 @@ def measure_context_switch_time():
     total_context_switches = num_iterations * 2  # Each thread completes `num_iterations` accesses
     average_context_switch_time = total_time / total_context_switches
 
-    print(int(total_time * 100000))
+    print(int(total_time * 1000000000 / int(1e5)))
 
 # Run the context switch measurement
 if __name__ == "__main__":

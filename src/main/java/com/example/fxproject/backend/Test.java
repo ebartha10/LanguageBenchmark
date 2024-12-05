@@ -93,7 +93,7 @@ public interface Test {
         try {
             Process runProcess = runProcessBuilder.start();
             int exitCode = runProcess.waitFor();
-            return (double) exitCode / 100000;
+            return (double) exitCode / 1000000000;
         } catch (IOException | InterruptedException e) {
             e.printStackTrace();
         }
@@ -157,9 +157,13 @@ public interface Test {
             // Check if the process exited successfully
             if (exitCode == 0 && output != null) {
                 // Parse the output as a double and return it
-                return Double.parseDouble(output) / 100000;
+                return Double.parseDouble(output) / 1000000000;
             } else {
-                System.err.println("Python script exited with code: " + exitCode);
+                BufferedReader errorReader = new BufferedReader(new InputStreamReader(process.getErrorStream()));
+                String line;
+                while ((line = errorReader.readLine()) != null) {
+                    System.err.println(line);
+                }
             }
         } catch (IOException | InterruptedException e) {
             e.printStackTrace();

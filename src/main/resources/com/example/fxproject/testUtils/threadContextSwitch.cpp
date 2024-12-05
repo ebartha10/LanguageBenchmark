@@ -39,5 +39,5 @@ int main() {
 
     std::chrono::duration<double> duration = end - start;
 
-    return duration.count() * 100000;
+    return duration.count() * 1000000000 / SWITCH_AMOUNT;
 }
